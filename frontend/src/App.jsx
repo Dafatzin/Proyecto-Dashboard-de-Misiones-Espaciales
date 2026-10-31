@@ -1,4 +1,4 @@
-//import EstatusNave from "./components/EstatusNave";
+import EstatusNave from "./components/EstatusNave";
 import Navegacion from "./components/Navegacion";
 //import NucleoEnergia from "./components/NucleoEnergia";
 //import SoportVit from "./components/SoportVit"; 
@@ -9,6 +9,7 @@ function App(){
 return (
   <div>
     <Navegacion/>
+    <EstatusNave/>
  </div>
 );
 }

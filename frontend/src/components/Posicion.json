@@ -3,18 +3,18 @@
  "nombre": "Inicio",
  "imagen": "/imagenes/Espacio.jpg",
      "km": "0", 
-"Descripcion":"Un lugar en la inmensidad del espacio, rodeado de estrellas y nebulosas que iluminan el horizonte"  
+"descripcion":"Un lugar en la inmensidad del espacio, rodeado de estrellas y nebulosas que iluminan el horizonte"  
 },
 {
 "nombre": "Luna",
 "imagen": "/imagenes/Luna.png",
 "km": "20",
-"Descripcion":"Satélite natural que orbita el planeta tierra, con un diámetro ecuatorial de 3474,8km.Contiene polvo Lunar, oxígeno, silicio, magnesio, hiero, calcio y aluminio."
+"descripcion":"Satélite natural que orbita el planeta tierra, con un diámetro ecuatorial de 3474,8km.Contiene polvo Lunar, oxígeno, silicio, magnesio, hiero, calcio y aluminio."
 },
 {"nombre": "Marte",
 "imagen": "/imagenes/Marte.png",
  "km": 80,
-  "Descripcion": "Segundo planeta más pequeño del sistema solar, con un diámetro ecuatorial de 3394.4km.Contiene hierro, aluminio, magnesio, calcio y potasio"
+  "descripcion": "Segundo planeta más pequeño del sistema solar, con un diámetro ecuatorial de 3394.4km.Contiene hierro, aluminio, magnesio, calcio y potasio"
 },
-{"nombre": "Júpiter", "imagen":"/imagenes/Jupiter.png", "km": 150, "Descripcion":"Planeta más grande del sistema solar, con un diámetro de 138,346km.Contiene hidrógeno, helio, amoníaco, metano y agua."}
+{"nombre": "Júpiter", "imagen":"/imagenes/Jupiter.png", "km": 150, "descripcion":"Planeta más grande del sistema solar, con un diámetro de 138,346km.Contiene hidrógeno, helio, amoníaco, metano y agua."}
 ]

@@ -9,6 +9,10 @@ function Navegacion() {
  const [nombre, setNombre] = useState("");
  const [km, setKm] = useState("");
  const [descripcion, setDescripcion] = useState("");
+ const [form, setForm] = useState(false);
+ const [seleccionado, setSeleccionado] = useState(false);
+ //Se va a leer la imagen
+ const [imagen, setImagen] = useState("");
 
  const [lista, setLista] = useState (() => {
     const guardado = localStorage.getItem("destinos");
@@ -37,6 +41,33 @@ return v + 1;
 return () => clearInterval(intervalo);
 }, [destino]);
 
+//Se va a agregar un formulario
+
+function GuardarForm(){
+  const nuevoDestino = {
+    nombre:nombre,
+    imagen: imagen,
+    km: Number(km),
+    descripcion: descripcion,  
+  };
+  setLista([...lista, nuevoDestino]);
+  setNombre("");
+  setImagen("");
+  setKm("");
+  setDescripcion("");
+}
+
+// Función para leer la imagen
+function leerImagen(e){
+  const archivo = e.target.files[0];
+  if (!archivo) return;
+
+  const lector= new FileReader();
+  lector.onload = () => setImagen(lector.result);
+  lector.readAsDataURL(archivo);
+}
+
+
 //Se va a dibujar una linea hasta que se llegue al planeta
 return (
     <div>
@@ -54,11 +85,36 @@ return (
     <div className="ListaDestinos">
     {lista.map((d) =>(
     <div key={d.nombre} className="punto-contenedor"> 
-    <button className="PuntoDest" onClick={() => setDestino(d)}></button>
-    {destino.nombre === d.nombre && <p>{d.nombre}</p>}
+    <button className="PuntoDest" onClick={() => {setDestino(d);setSeleccionado(true)}}></button>
     </div>
   ))}
     </div>
+  {seleccionado && (
+  <div className="InfoDestino">
+    <h2>{destino.nombre}</h2>
+    <img src={destino.imagen} alt={destino.nombre}/>
+    <p>{destino.km}</p>
+    <p>{destino.descripcion}</p>
+    </div>
+  )}
+
+    </div>
+      
+    <div className="Formulario">
+    <button className="BtnForm" onClick={() => setForm(!form)}> Formulario</button>
+    { form && (
+     <div className="DatosForm">
+      <p className="Titulos">Nombre del Planeta</p>
+      <input value={nombre} onChange={(e) =>setNombre(e.target.value)} placeholder="Agrega nombre"/>
+     <p className="Titulos"> Distancia en km</p>
+     <input value={km} onChange={(e) =>setKm(e.target.value)} placeholder="18km"/>
+     <p className="Titulos">Descripción</p>
+     <input value={descripcion} onChange={(e) =>setDescripcion(e.target.value)} placeholder="Añade la descricpión"/>
+     <p className="Titulos">Imagen</p>
+     <input type="file" accept="imagen/*" onChange={leerImagen} />
+      <button className="BtnGuardar" onClick={GuardarForm}> Guardar </button>
+      </div> 
+    )}
     </div>
     </div>
 );
