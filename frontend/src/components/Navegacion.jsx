@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import destinos from "./Posicion.json";
 
-function Navegacion() {
+function Navegacion({ onVelocidad }) {
  const [destino, setDestino] = useState(destinos[0])
  const [velocidad, setVelocidad] = useState(0);
  const [nombre, setNombre] = useState("");
@@ -40,6 +40,11 @@ return v + 1;
 }, 300);
 return () => clearInterval(intervalo);
 }, [destino]);
+
+// Para que funcione con velocidad
+useEffect(() => {
+ onVelocidad(velocidad); 
+  }, [velocidad]);
 
 //Se va a agregar un formulario
 
@@ -85,7 +90,8 @@ return (
     <div className="ListaDestinos">
     {lista.map((d) =>(
     <div key={d.nombre} className="punto-contenedor"> 
-    <button className="PuntoDest" onClick={() => {setDestino(d);setSeleccionado(true)}}></button>
+    <button className="PuntoDest" onClick={() => {setDestino(d);setSeleccionado(true);
+    }}></button>
     </div>
   ))}
     </div>
@@ -111,7 +117,7 @@ return (
      <p className="Titulos">Descripción</p>
      <input value={descripcion} onChange={(e) =>setDescripcion(e.target.value)} placeholder="Añade la descricpión"/>
      <p className="Titulos">Imagen</p>
-     <input type="file" accept="imagen/*" onChange={leerImagen} />
+     <input type="file" accept="image/*" onChange={leerImagen} />
       <button className="BtnGuardar" onClick={GuardarForm}> Guardar </button>
       </div> 
     )}
