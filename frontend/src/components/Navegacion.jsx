@@ -3,6 +3,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import destinos from "./Posicion.json";
 
+const terminos = {
+  Luna: "moon",
+  Marte: "mars planet",
+  Júpiter: "jupiter planet",
+};
+
 function Navegacion({ onVelocidad }) {
  const [destino, setDestino] = useState(destinos[0])
  const [velocidad, setVelocidad] = useState(0);
@@ -13,6 +19,8 @@ function Navegacion({ onVelocidad }) {
  const [seleccionado, setSeleccionado] = useState(false);
  //Se va a leer la imagen
  const [imagen, setImagen] = useState("");
+ // Para la API
+ const [datosNasa, setDatosNasa] = useState(null);
 
  const [lista, setLista] = useState (() => {
     const guardado = localStorage.getItem("destinos");
@@ -72,6 +80,18 @@ function leerImagen(e){
   lector.readAsDataURL(archivo);
 }
 
+// Para la API
+useEffect(() => {
+  if (destino.nombre === "Inicio")return;
+  setDatosNasa(null);
+
+const busqueda = terminos[destino.nombre] || destino.nombre;
+fetch(`http://localhost:3000/imagen/${busqueda}`)
+ .then((r) => r.json())
+ .then((datos) => setDatosNasa(datos))
+ .catch(() => setDatosNasa(null));
+}, [destino]);
+
 
 //Se va a dibujar una linea hasta que se llegue al planeta
 return (
@@ -101,6 +121,13 @@ return (
     <img src={destino.imagen} alt={destino.nombre}/>
     <p>{destino.km}</p>
     <p>{destino.descripcion}</p>
+
+     {datosNasa && datosNasa.imagen && (
+    <div className="InfoNasa">
+    <img src={datosNasa.imagen} alt={datosNasa.titulo} />
+    <p>{datosNasa.descripcion}</p>
+    </div>
+  )}
     </div>
   )}
 
