@@ -24,6 +24,15 @@ app.get("/imagen/:busqueda", async (req, res) => {
   res.status(500).json({ error: "No se pudo obtener la imagen"});
 }
 });
+
+app.get("/verificar/:clave", (req, res) => {
+  if(req.params.clave === process.env.CLAVE_SECRETA) {
+    res.json({autorizado: true});
+  } else {
+    res.json({autorizado: false});
+  }
+});
+
 app.listen(3000, () => {
   console.log("Servidor en http://localhost:3000");
 });
