@@ -2,13 +2,13 @@
 {
  "nombre": "Inicio",
  "imagen": "/imagenes/Espacio.jpg",
-     "km": "0", 
+     "km": 0, 
 "descripcion":"Un lugar en la inmensidad del espacio, rodeado de estrellas y nebulosas que iluminan el horizonte"  
 },
 {
 "nombre": "Luna",
 "imagen": "/imagenes/Luna.png",
-"km": "20",
+"km": 20,
 "descripcion":"Satélite natural que orbita el planeta tierra, con un diámetro ecuatorial de 3474,8km.Contiene polvo Lunar, oxígeno, silicio, magnesio, hiero, calcio y aluminio."
 },
 {"nombre": "Marte",

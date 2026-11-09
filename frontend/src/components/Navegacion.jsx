@@ -1,6 +1,9 @@
 import "./Navegacion.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useMemo } from "react";
+import { useCallback }  from "react";
+import { z } from "zod";
 import destinos from "./Posicion.json";
 
 const terminos = {
@@ -8,6 +11,13 @@ const terminos = {
   Marte: "mars planet",
   Júpiter: "jupiter planet",
 };
+
+//Para Zod
+const ReglasDestino = z.object({
+  nombre: z.string().min(2,"Mínimo debe haber 2 caracteres"),
+  km: z.number("Solo números").positive("Solo números mayor a 0"),
+  descripcion: z.string().min(10, "Mínimo 10 caracteres")
+});
 
 function Navegacion({ onVelocidad }) {
  const [destino, setDestino] = useState(destinos[0])
@@ -21,15 +31,24 @@ function Navegacion({ onVelocidad }) {
  const [imagen, setImagen] = useState("");
  // Para la API
  const [datosNasa, setDatosNasa] = useState(null);
+ const [errorApi, setErrorApi] = useState ("");
+//Para el Zod Error
+const [error, setError] = useState([]);
 
  const [lista, setLista] = useState (() => {
     const guardado = localStorage.getItem("destinos");
     return guardado ? JSON.parse(guardado) : destinos;
  });    
  
+// Para el useMemo
+const totalkm = useMemo (() => {
+  return lista.reduce((suma, d) => suma + Number(d.km), 0);
+}, [lista]);
+
 useEffect(() => {
     localStorage.setItem("destinos", JSON.stringify(lista));    
 }, [lista]);
+
 
 useEffect(() => {
 setVelocidad(0);
@@ -56,40 +75,54 @@ useEffect(() => {
 
 //Se va a agregar un formulario
 
-function GuardarForm(){
+const GuardarForm = useCallback(() => {
   const nuevoDestino = {
     nombre:nombre,
     imagen: imagen,
     km: Number(km),
     descripcion: descripcion,  
   };
+  //Para Zod
+  const resultado = ReglasDestino.safeParse(nuevoDestino);
+  if(!resultado.success){
+    setError(resultado.error.issues.map((i) => i.message));
+    return;
+  }
   setLista([...lista, nuevoDestino]);
   setNombre("");
   setImagen("");
   setKm("");
   setDescripcion("");
-}
+  setError([]);
+}, [nombre, imagen, km, descripcion, lista]);
 
 // Función para leer la imagen
-function leerImagen(e){
+const leerImagen = useCallback((e) => {
   const archivo = e.target.files[0];
   if (!archivo) return;
 
-  const lector= new FileReader();
-  lector.onload = () => setImagen(lector.result);
-  lector.readAsDataURL(archivo);
-}
+const lector = new FileReader();
+lector.onload = () => setImagen(lector.result);
+lector.readAsDataURL(archivo);
+}, []);
 
 // Para la API
 useEffect(() => {
   if (destino.nombre === "Inicio")return;
   setDatosNasa(null);
+  setErrorApi("");
 
 const busqueda = terminos[destino.nombre] || destino.nombre;
 fetch(`http://localhost:3000/imagen/${busqueda}`)
  .then((r) => r.json())
- .then((datos) => setDatosNasa(datos))
- .catch(() => setDatosNasa(null));
+ .then((datos) => {
+  if(datos.error) {
+  setErrorApi("Error en los datos");
+ return;
+}
+setDatosNasa(datos);
+})
+.catch(() => setErrorApi("No se pudo conectar con el servidor"));
 }, [destino]);
 
 
@@ -107,6 +140,7 @@ return (
       <h1>Posición</h1>
     {/* Se va a trazar una linea azul hasta el destino pero no se hacerlo*/}
     <h1>Destino:{destino.nombre}</h1>  
+    <p className="Dist">Distancia total de la ruta: {totalkm} km</p>
     <div className="ListaDestinos">
     {lista.map((d) =>(
     <div key={d.nombre} className="punto-contenedor"> 
@@ -118,8 +152,8 @@ return (
   {seleccionado && (
   <div className="InfoDestino">
     <h2>{destino.nombre}</h2>
-    <img src={destino.imagen} alt={destino.nombre}/>
-    <p>{destino.km}</p>
+    {destino.imagen && <img src={destino.imagen} alt={destino.nombre}/>}
+    <p>{destino.km} km</p>
     <p>{destino.descripcion}</p>
 
      {datosNasa && datosNasa.imagen && (
@@ -128,6 +162,7 @@ return (
     <p>{datosNasa.descripcion}</p>
     </div>
   )}
+  {errorApi && <p className="Error">{errorApi}</p>}
     </div>
   )}
 
@@ -140,11 +175,13 @@ return (
       <p className="Titulos">Nombre del Planeta</p>
       <input value={nombre} onChange={(e) =>setNombre(e.target.value)} placeholder="Agrega nombre"/>
      <p className="Titulos"> Distancia en km</p>
-     <input value={km} onChange={(e) =>setKm(e.target.value)} placeholder="18km"/>
+     <input value={km} onChange={(e) =>setKm(e.target.value)} placeholder="18"/>
      <p className="Titulos">Descripción</p>
      <input value={descripcion} onChange={(e) =>setDescripcion(e.target.value)} placeholder="Añade la descricpión"/>
      <p className="Titulos">Imagen</p>
      <input type="file" accept="image/*" onChange={leerImagen} />
+     {/*Para Zod*/}
+     {error.map((e) => (<p key={e} className="Error">{e}</p>))}
       <button className="BtnGuardar" onClick={GuardarForm}> Guardar </button>
       </div> 
     )}
