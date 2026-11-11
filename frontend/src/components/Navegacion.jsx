@@ -128,20 +128,20 @@ setDatosNasa(datos);
 
 //Se va a dibujar una linea hasta que se llegue al planeta
 return (
-    <div>
+    <div className="Componente">
      <div className="ComponenteVelocidad">   
     <div className="Velodatos">   
-     <h1> V E L O C I D A D</h1>
+     <h1> VELOCIDAD</h1>
      <p>{velocidad}</p>
      {/*Grafica circulo pero no se hacerlo*/}
     </div>
     </div>
     <div className="ComponentePosicion">
-      <h1>Posición</h1>
     {/* Se va a trazar una linea azul hasta el destino pero no se hacerlo*/}
-    <h1>Destino:{destino.nombre}</h1>  
+    <h1>DESTINO:{destino.nombre}</h1>  
     <p className="Dist">Distancia total de la ruta: {totalkm} km</p>
     <div className="ListaDestinos">
+      <h1>POSICIÓN</h1>
     {lista.map((d) =>(
     <div key={d.nombre} className="punto-contenedor"> 
     <button className="PuntoDest" onClick={() => {setDestino(d);setSeleccionado(true);
@@ -152,7 +152,7 @@ return (
   {seleccionado && (
   <div className="InfoDestino">
     <h2>{destino.nombre}</h2>
-    {destino.imagen && <img src={destino.imagen} alt={destino.nombre}/>}
+    {destino.imagen && <img src={destino.imagen} className="imagen" alt={destino.nombre}/>}
     <p>{destino.km} km</p>
     <p>{destino.descripcion}</p>
 

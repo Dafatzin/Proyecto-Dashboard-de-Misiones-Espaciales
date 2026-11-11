@@ -1,0 +1,12 @@
+.quicksand{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.BtnRepTod{font-family: "Quicksand", sans-serif;color: rgb(199, 149, 116); text-shadow: 0 0 2px rgb(131, 62, 16), 0 0 6px rgb(133, 62, 25), 0 0 10px #c95305;background-color: black;box-shadow: 0 0 4px #3279d6;border-color: #124280;font-size: 23px;margin-top: 15px;}
+.Daño{font-family: 'Arial Narrow', Arial, sans-serif; color: #aecef7;text-shadow: 0 0 4px rgb(31, 56, 167);font-size: 20px;font-weight: bold;}
+.Habilidades{display: flex;justify-content: center;align-items: center;}
+.Reparar{font-family: "Quicksand", sans-serif; color: #e2742a;text-shadow: 0 0 3px #6d2f06, 0 0 6px #e2742a, 0 0 8px #6d2f06;font-size: 21px;background: rgba(32, 22, 17, 0.7);margin: 6px;border-color: #c95305;}
+.Centrar{display: flex;justify-content: center;}

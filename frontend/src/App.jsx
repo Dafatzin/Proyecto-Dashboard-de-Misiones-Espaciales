@@ -16,13 +16,20 @@ function App(){
  }
 
  function clase(nombre){
-  return abierto === nombre ? "modulo grande" : "modulo";
+  return abierto === nombre ? `modulo ${nombre} grande` : `modulo ${nombre}`;
  }
+
+ // Para el fondo movible
+ const viajando = velocidad > 0 && velocidad < 100;
+
 return (
+  <>
+  <div className={viajando ? "fondo-movible viajando" : "fondo-movible"}></div>
+  <div className="fondo-estatico"></div>
   <div className="Dashboard">
     <div className={clase("navegacion")}>
     <button className="TituloModulo" onClick={() => alternar("navegacion")}>
-      N A V E G A C I Ó N
+      NAVEGACIÓN
     </button>
   <div className="contenido">
     <Navegacion onVelocidad={setVelocidad} />
@@ -31,7 +38,7 @@ return (
 
   <div className={clase("energia")}>
     <button className="TituloModulo" onClick={() => alternar("energia")}>
-      N Ú C L E O  D E  E N E R G Í A
+      NÚCLEO <br /> DE <br /> ENERGÍA
     </button>
     <div className="contenido">
       <NucleoEnergia velocidad={velocidad} />
@@ -41,7 +48,7 @@ return (
 
   <div className={clase("vital")}>
    <button className="TituloModulo" onClick={() => alternar("vital")}>
-    S O P O R T E  V I T A L
+    SOPORTE <br /> VITAL
    </button>
    <div className="contenido">
     <SoporteVital velocidad={velocidad} />
@@ -50,7 +57,7 @@ return (
 
    <div className={clase("estatus")}>
     <button className="TituloModulo" onClick={() => alternar("estatus")}>
-    E S T A T U S  D E  L A  N A V E
+    ESTATUS DE <br /> LA NAVE
     </button>
   <div className="contenido">
   {autorizado ? (
@@ -61,6 +68,7 @@ return (
   </div>
    </div>
   </div>    
+  </>
 );
 }
 export default App;

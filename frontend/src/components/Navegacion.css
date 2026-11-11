@@ -1,0 +1,19 @@
+.quicksand{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Componente{background-color: rgba(2, 2, 5, 0.5);}
+h1{font-family: "Quicksand", sans-serif;color: rgb(199, 149, 116); text-shadow: 0 0 2px rgb(131, 62, 16), 0 0 6px rgb(133, 62, 25), 0 0 10px #c95305;margin: 4px;justify-content: center;display: flex;}
+p{color: rgb(102, 191, 218); text-shadow: 0 0 2px #c4a270, 0 0 5px #1245a5;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: bold;font-size: 18px;margin: 0;}
+.ListaDestinos{display: flex;flex-wrap: wrap;gap: 30%;}
+.punto-contenedor{width: 40px;justify-content: center;}
+.PuntoDest{width:30px;height: 30px;background-color: #1245a5;border-radius: 50%;box-shadow: 0 0 5px #08796a, 0 0 9px #3169d3;}
+h2{color: #a8f0ce; text-shadow: 0 0 4px #10749c, 0 0 8px #3169d3;font-family: 'Arial Narrow', Arial, sans-serif;font-weight: bold;}
+.imagen{width:80%;display: flex;align-items: center;}
+.InfoNasa img{width: 80%;}
+.InfoNasa{display: flex;flex-direction: column;align-items: center;}
+.InfoDestino{display: flex;flex-direction: column; align-items: center;}
+.Velodatos{display: flex;flex-direction: column;align-items: center;}
