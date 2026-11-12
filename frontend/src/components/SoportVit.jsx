@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import "./SoportVit.css";
 
 function SoporteVital({velocidad}){
  const [oxigeno, setOxigeno] = useState(100);
@@ -27,12 +28,16 @@ function recuperarOxigeno(){
 
 }
 return(
-<div className='Oxigeno'>
+<div className='Componente'>
  <h1 className='Titulos'> Nivel de Oxígeno</h1>
+ <div className='Centrado'>
  <p className='DatoSoport'>Oxígeno: {oxigeno}%</p>
  <p className='DatoSoport'>Presión: {presion}</p>
  <p className='DatoSoport'>Estado de la Tripulación: {estadoTrip}</p>
+ </div>
+ <div className='Centrado'>
  <button className='BtnOxigeno' onClick={recuperarOxigeno}>Recuperar Oxígeno</button>
+ </div>
  {mensaje && <div className= 'Alerta'>{mensaje}</div>}
 </div>    
 );

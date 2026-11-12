@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import "./NucleoEnergia.css";
 
 function NucleoEnergia({velocidad}){
 const [combustible, setCombustible] = useState(100);
@@ -19,11 +20,11 @@ function recargar(){
 }
 
 return (
-    <div className='NucleoEnergia'>
+    <div className='Componente'>
     <div className='Combustible'>  
      <h1>Combustible</h1>
      <p className='DatosComb'>{combustible}%</p>
-     <button onClick={recargar}>Recargar</button>
+     <button className= 'BtnRec' onClick={recargar}>Recargar</button>
      </div> 
      <div className='Potencia'>
      <h1>Potencia</h1>

@@ -32,4 +32,7 @@ animation: zoomViaje 27s ease-out;
 
 /* Contenido */
 .modulo.navegacion .contenido {top: 10%;left: 1%; position: fixed; overflow-y: auto;max-height: 50vh;width: 40%;}
-.modulo.estatus .contenido {top:30%;position: fixed;left: 42%;}
+.modulo.estatus .contenido {top: 28%;position: fixed;left: 42%;}
+.modulo.vital .contenido {top: 40%;position: fixed; right: 24%;}
+.modulo.energia .contenido {bottom: 7%; position: fixed;left: 13%;}
+
