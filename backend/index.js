@@ -33,7 +33,11 @@ app.get("/verificar/:clave", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor en http://localhost:3000");
-});
+if (!process.env.VERCEL) {
+  app.listen(3000, () => {
+   console.log("Servidor en http://localhost:3000");
+  });
+}
+
+export default app;
 

@@ -7,7 +7,7 @@ const [error, setError] = useState("");
 
 function verificar(){
     setError("");
-    fetch(`http://localhost:3000/verificar/${clave}`)
+    fetch(`${API}/verificar/${clave}`)
     .then((r) => r.json())
     .then((datos) => {
     setAutorizado(datos.autorizado);

@@ -6,6 +6,8 @@ import { useCallback }  from "react";
 import { z } from "zod";
 import destinos from "./Posicion.json";
 
+const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const terminos = {
   Luna: "moon",
   Marte: "mars planet",
@@ -113,7 +115,7 @@ useEffect(() => {
   setErrorApi("");
 
 const busqueda = terminos[destino.nombre] || destino.nombre;
-fetch(`http://localhost:3000/imagen/${busqueda}`)
+fetch(`${API}/imagen/${busqueda}`)
  .then((r) => r.json())
  .then((datos) => {
   if(datos.error) {
