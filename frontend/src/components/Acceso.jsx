@@ -1,4 +1,5 @@
 import { useState } from "react";
+const API = import.meta.env.PROD ? "/api" : "http://localhost:3000";
 
 function Acceso({onAcceso}){
 const [clave, setClave] = useState("");

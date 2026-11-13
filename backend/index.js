@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.send("Servidor funcionando");
 });
 
-app.get("/imagen/:busqueda", async (req, res) => {
+app.get(["/imagen/:busqueda", "/api/imagen/:busqueda"], async (req, res) => {
   try{
   const url = `https://images-api.nasa.gov/search?q=${req.params.busqueda}&media_type=image`;
   const respuesta = await fetch(url);
@@ -25,7 +25,7 @@ app.get("/imagen/:busqueda", async (req, res) => {
 }
 });
 
-app.get("/verificar/:clave", (req, res) => {
+app.get(["/verificar/:clave", "/api/verificar/:clave"], async (req, res) => {
   if(req.params.clave === process.env.CLAVE_SECRETA) {
     res.json({autorizado: true});
   } else {

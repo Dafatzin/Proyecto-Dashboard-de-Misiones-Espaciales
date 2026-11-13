@@ -6,7 +6,7 @@ import { useCallback }  from "react";
 import { z } from "zod";
 import destinos from "./Posicion.json";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = import.meta.env.PROD ? "/api" : "http://localhost:3000";
 
 const terminos = {
   Luna: "moon",
