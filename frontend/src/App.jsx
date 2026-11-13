@@ -38,7 +38,7 @@ return (
 
   <div className={clase("energia")}>
     <button className="TituloModulo" onClick={() => alternar("energia")}>
-      NÚCLEO <br /> DE <br /> ENERGÍA
+      NÚCLEO DE <br /> ENERGÍA 
     </button>
     <div className="contenido">
       <NucleoEnergia velocidad={velocidad} />

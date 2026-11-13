@@ -19,20 +19,20 @@ animation: zoomViaje 27s ease-out;
   100% { transform: scale(1) translateX(0);}
 }
 
-.TituloModulo{font-family: 'Quicksand';font-size: 35px;color: rgb(199, 149, 116);text-shadow: 0 0 2px rgb(131, 62, 16), 0 0 6px rgb(133, 62, 25), 0 0 10px #c95305;background-color: rgba(48, 22, 12, 0.7);border-color: rgb(131, 62, 16);box-shadow: 0 0 10px #c95305;}
+.TituloModulo{font-family: 'Quicksand';font-size: 30px;color: rgb(199, 149, 116);text-shadow: 0 0 2px rgb(131, 62, 16), 0 0 6px rgb(133, 62, 25), 0 0 10px #c95305;background-color: rgba(48, 22, 12, 0.7);border-color: rgb(131, 62, 16);box-shadow: 0 0 10px #c95305;}
 .modulo {position: fixed}
 .modulo .contenido { display: none;}
 .modulo.grande .contenido{ display: block;}
 
 /* Botones estilo */
-.modulo.navegacion {top:65%; left: 25.7%; letter-spacing: 5px;}
-.modulo.estatus{top: 63%; left: 44%;}
-.modulo.vital {top: 63%; left: 62.5%;}
-.modulo.energia {top: 80%; left: 45.5%}
+.modulo.navegacion {top:65%; left: 25.3%; letter-spacing: 5px;}
+.modulo.estatus{top: 63%; left: 43%;}
+.modulo.vital {top: 63%; left: 62%;}
+.modulo.energia {top: 80%; left: 43.5%}
 
 /* Contenido */
 .modulo.navegacion .contenido {top: 10%;left: 1%; position: fixed; overflow-y: auto;max-height: 50vh;width: 40%;}
 .modulo.estatus .contenido {top: 28%;position: fixed;left: 42%;}
-.modulo.vital .contenido {top: 40%;position: fixed; right: 24%;}
-.modulo.energia .contenido {bottom: 7%; position: fixed;left: 13%;}
+.modulo.vital .contenido {top: 37%;position: fixed; right: 24%;}
+.modulo.energia .contenido {bottom: 7%; position: fixed;left: 8%;}
 
